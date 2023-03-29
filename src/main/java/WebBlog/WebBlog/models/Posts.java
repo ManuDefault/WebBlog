@@ -33,6 +33,19 @@ public class Posts {
     public Posts() {
     }
 
+    public Posts(String title) {
+        this.title=title;
+    }
+
+    public Posts(int id, String title, String content, ZonedDateTime create_at, ZonedDateTime update_at, Users users) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.create_at = create_at;
+        this.update_at = update_at;
+        this.users = users;
+    }
+
     public int getId() {
         return id;
     }

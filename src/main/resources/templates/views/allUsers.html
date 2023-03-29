@@ -1,0 +1,21 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<form action="#">
+    <table>
+        <tr>
+            <th>Names</th>
+        </tr>
+        <tr th:each="item : ${all}">
+            <td th:text="${item.getUsername()}"></td>
+            <td><a th:href="@{/users/getUser/{id} (id=${item.getId()})}"><input value="Подробнее"/></a></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

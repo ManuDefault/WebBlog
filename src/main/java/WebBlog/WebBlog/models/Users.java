@@ -17,10 +17,10 @@ public class Users {
     @Column(name="id")
     private int id;
 
-    @Column(name="name")
+    @Column(name="username")
     private String username;
 
-    @Column(name="email")
+    @Column(name = "email", length = 100)
     private String email;
 
     @Column(name="password")

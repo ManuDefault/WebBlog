@@ -1,0 +1,23 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.username}"></title>
+</head>
+<body>
+
+<form action="#" th:object="${user}">
+    <h1 th:text="*{username}"></h1><br>
+    <h2 th:text="*{email}"></h2><br>
+    <h3 th:text="*{password}"></h3><br>
+    <div th:each="item : ${user}">
+        <p th:text="${item.getCreate_up()}"></p>
+        <p th:text="${item.getUpdate_at()}"></p>
+        <div th:each="post : ${item.getPostsList()}">
+            <p th:text="${post.getTitle()}"></p>
+        </div>
+
+    </div>
+</form>
+</body>
+</html>
