@@ -16,8 +16,11 @@
         <div th:each="post : ${item.getPostsList()}">
             <p th:text="${post.getTitle()}"></p>
         </div>
-
     </div>
+
+
 </form>
+
+<a th:href="@{/posts/{id}/create (id=${user.getId()})}"> <button type="submit" text="New Post"> N Post </button></a>
 </body>
 </html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#">
+    <table>
+        <tr>
+            <th>Names</th>
+        </tr>
+        <tr th:each="item : ${allPost}">
+            <td th:text="${item.getTitle()}"></td>
+            <td><a th:href="@{/posts/getPost/{id} (id=${item.getId()})}"><input value="Подробнее"/></a></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
