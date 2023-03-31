@@ -12,6 +12,8 @@
         <p th:text="${post.getContent()}" ></p>
     </div>
 
+    <a th:href="@{/posts/edit/{id} (id=${post.getId()})}"> <button type="button">Изменить</button> </a>
+
 
 </form>
 </body>

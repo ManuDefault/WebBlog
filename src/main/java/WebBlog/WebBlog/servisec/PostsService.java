@@ -28,4 +28,5 @@ public class PostsService {
 
         return optionalPosts.orElseThrow();
     }
+
 }

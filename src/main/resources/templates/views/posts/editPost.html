@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма публикации поста</title>
+</head>
+<body>
+<h1>Форма публикации поста</h1>
+<form action="#" th:action="@{/posts/saveEdit}" th:object="${postEdit}" method="post">
+    <label for="title">Заголовок:</label>
+    <input type="text" id="title" th:field="*{title}"/>
+
+    <label for="content">Содержание:</label>
+    <textarea id="content" th:field="*{content}"></textarea>
+    <input type="hidden" name="idPost"  th:value="${idPost}"/>
+    <button type="submit">Сохранить</button>
+</form>
+</body>
+</html>

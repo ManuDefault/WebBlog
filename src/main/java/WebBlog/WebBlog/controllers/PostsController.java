@@ -37,8 +37,16 @@ public class PostsController {
         posts.setUpdate_at(ZonedDateTime.now());
         Users u = usersService.getUsersById(id);
         posts.setUsers(u);
-        System.out.println(u);
-        System.out.println(integer);
+        postsService.savePost(posts);
+        return "redirect:/posts/allPost";
+    }
+
+    @PostMapping("/saveEdit")
+    public String savePostEdit(@ModelAttribute(name = "postEdit") Posts posts,@RequestParam("idPost") int id) {
+        Posts posts1 = postsService.getPostById(id);
+        posts.setId(posts1.getId());
+        posts.setUpdate_at(ZonedDateTime.now());
+        posts.setUsers(usersService.getUsersById(posts1.getUsers().getId()));
         postsService.savePost(posts);
         return "redirect:/posts/allPost";
     }
@@ -54,5 +62,13 @@ public class PostsController {
     public String getOnlyPostById(@PathVariable("id") int id, Model model) {
         model.addAttribute("post", postsService.getPostById(id));
         return "views/posts/postById.html";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editPost(@PathVariable("id") int id,Model model){
+        Posts post = postsService.getPostById(id);
+        model.addAttribute("postEdit",post);
+        model.addAttribute("idPost",id);
+        return "views/posts/editPost.html";
     }
 }
