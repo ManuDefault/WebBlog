@@ -12,9 +12,14 @@
         <p th:text="${post.getContent()}" ></p>
     </div>
 
-    <a th:href="@{/posts/edit/{id} (id=${post.getId()})}"> <button type="button">Изменить</button> </a>
-
-
+    <a th:href="@{/posts/edit/{id} (id=${post.getId()})}"><button type="button">Изменить</button> </a>
 </form>
+<br>
+<hr>
+<br>
+<!--<form th:action="@{/comments/{idUser}/post/{id} (idUser=${#.getIdUser()})   (id=${post.getId()}) }">-->
+
+
+<!--</form>-->
 </body>
 </html>

@@ -46,6 +46,7 @@ public class PostsController {
         Posts posts1 = postsService.getPostById(id);
         posts.setId(posts1.getId());
         posts.setUpdate_at(ZonedDateTime.now());
+        posts.setCreate_at(posts1.getCreate_at());
         posts.setUsers(usersService.getUsersById(posts1.getUsers().getId()));
         postsService.savePost(posts);
         return "redirect:/posts/allPost";
@@ -60,6 +61,16 @@ public class PostsController {
 
     @GetMapping("/getPost/{id}")
     public String getOnlyPostById(@PathVariable("id") int id, Model model) {
+
+        System.out.println(id);
+        model.addAttribute("post", postsService.getPostById(id));
+        return "views/posts/postById.html";
+    }
+    @GetMapping("/getPost")
+    public String getOnlyPostBy(Model model,@RequestParam("id") int id,@RequestParam("post")int post) {
+        System.out.println(post);
+        System.out.println(id);
+        model.addAttribute("userId",post);
         model.addAttribute("post", postsService.getPostById(id));
         return "views/posts/postById.html";
     }

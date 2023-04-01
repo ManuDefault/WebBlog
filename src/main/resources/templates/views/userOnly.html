@@ -10,16 +10,33 @@
     <h1 th:text="*{username}"></h1><br>
     <h2 th:text="*{email}"></h2><br>
     <h3 th:text="*{password}"></h3><br>
-    <div th:each="item : ${user}">
-        <p th:text="${item.getCreate_up()}"></p>
-        <p th:text="${item.getUpdate_at()}"></p>
-        <div th:each="post : ${item.getPostsList()}">
+
+        <p th:text="*{getCreate_up}"></p>
+        <p th:text="*{getUpdate_at}"></p>
+
+        <div th:each="post : *{postsList}">
             <p th:text="${post.getTitle()}"></p>
+
+            <a th:href="@{/posts/getPost/{id}(id=${user.getId()})}">
+
+             Посмотреть
+            </a>
+            <a th:href="@{/posts/getPost( id=${user.getId()} , post=${post.getId()}) }">
+
+                Go
+            </a>
         </div>
-    </div>
+
+
+
 
 
 </form>
+<!--<form name="form2" th:action="@{/posts/getPost}" method="get">-->
+<!--    <input type="text" th:value="${user.getId()}" name="idUser"/>-->
+<!--    <input type="text" th:value="${post.getId()}" name="postId"/>-->
+<!--    <button type="submit">Go</button>-->
+<!--</form>-->
 
 <a th:href="@{/posts/{id}/create (id=${user.getId()})}"> <button type="submit" text="New Post"> N Post </button></a>
 </body>

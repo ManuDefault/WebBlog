@@ -5,6 +5,7 @@ import WebBlog.WebBlog.repositores.PostsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,4 +30,7 @@ public class PostsService {
         return optionalPosts.orElseThrow();
     }
 
+    public List<Posts> getAllPostsById(int id) {
+      return   postsRepo.findAllById(Collections.singleton(id));
+    }
 }

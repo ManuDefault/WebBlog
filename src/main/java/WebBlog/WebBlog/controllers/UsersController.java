@@ -3,6 +3,7 @@ package WebBlog.WebBlog.controllers;
 
 import WebBlog.WebBlog.models.Posts;
 import WebBlog.WebBlog.models.Users;
+import WebBlog.WebBlog.servisec.PostsService;
 import WebBlog.WebBlog.servisec.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ public class UsersController {
 
     @Autowired
     private UsersService usersService;
+
+    @Autowired
+    private PostsService postsService;
 
 
     @GetMapping("/create")
@@ -40,14 +44,8 @@ public class UsersController {
     @GetMapping("getUser/{id}")
     public String getUser( @PathVariable("id") int id,Model model){
         Users users =  usersService.getUsersById(id);
-        List<Posts> postsList =new ArrayList<>();
-        postsList.add(new Posts("Post1"));
-        postsList.add(new Posts("Post2"));
-        postsList.add(new Posts("Post3"));
-        postsList.add(new Posts("Post4"));
-        postsList.add(new Posts("Post5"));
-        users.setPostsList(postsList);
-        model.addAttribute("user", users );
+        List<Posts> posts = postsService.getAllPostsById(id);
+        model.addAttribute("user", users);
          return "views/userOnly.html";
     }
 
